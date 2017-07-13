@@ -1,84 +1,8 @@
 <html>
 
-<script>// This is the jquery part of your template.  
-// Try not modify any of this code too much since it makes your menu work.
-
-$(document).ready(function() {
-
-	$("#HQ_page").attr('id','');
-
-	// call the functions that control the menu 
-	menu_functionality(); 
-	hide_show_menu();
-
-
-
-	//this function controls the expand and collapse buttons of the menu and changes the +/- symbols
-	function menu_functionality() {
-
-		//when clicking on a "menu_button", it will change the "+/-" accordingly and it will show/hide the corresponding submenu
-		$(".menu_button").click(function(){
-
-			// add or remove the class "open" , this class holds the "-" 
-			$(this).children().toggleClass("open");
-			// show or hide the submenu			
-			$(this).next('.submenu_wrapper').fadeToggle(400);
-		});
-
-		// when the screen size is smaller than 800px, the display_menu_control button appears and will show/hide the whole menu
-		$("#display_menu_control").click(function(){
-			$('#menu_content').fadeToggle(400);
-		});
-
-		// call the current page highlight function	
-		highlight_current_page();
-	}
-
-
-	// call the highlight current page function to show it on the menu with a different background color
-	function highlight_current_page() {
-
-		// select a page from the menu based on the id assigned to it and the current page name and add the class "current page" to make it change background color
-		$("#"+  wgPageName.substring(wgPageName.lastIndexOf("/")+1, wgPageName.length ) + "_page").addClass("current_page");
-
-		// now that the current_page class has been added to a menu item, make the submenu fade in
-		$(".current_page").parents(".submenu_wrapper").fadeIn(400);
-		// change the +/- symbol of the corresponding menu button
-		$(".current_page").parents(".submenu_wrapper").prev().children().toggleClass("open");
-		
-	}
-
-
-
-	// allow button on the black menu bar to show/hide the side menu
-	function hide_show_menu() {
-
-		// in case you preview mode is selected, the menu is hidden for better visibility 
-		if (window.location.href.indexOf("submit") >= 0) {
-			$(".igem_2017_menu_wrapper").hide();
-		}
-
-		// if the black menu bar has been loaded
- 		if (document.getElementById('bars_item')) {
-
-			// when the "bars_item" has been clicked
-			$("#bars_item").click(function() {
-				$("#sideMenu").hide();
-
-				// show/hide the menu wrapper
-				$(".igem_2017_menu_wrapper").fadeToggle("100");
-			});		
- 		} 
-
-		// because the black menu bars loads at a different time than the rest of the page, this function is set on a time out so it can run again in case it has not been loaded yet
-		else {
- 				setTimeout(hide_show_menu, 15);
-		}
-	}
-
-
-});</script>
-<style>/***************************************************** DEFAULT WIKI SETTINGS  ****************************************************/
+	<link rel="stylesheet" type="text/css" href="http://2017.igem.org/Template:KU_Leuven/bootstrapcss?action=raw&ctype=text/css"/>
+	<script type="text/javascript" src="http://2017.igem.org/Template:KU_Leuven/bootstrapjs?action=raw&ctype=text/javascript"></script>
+	<style>/***************************************************** DEFAULT WIKI SETTINGS  ****************************************************/
 	
 	/* Clear the default wiki settings */
 	
@@ -87,8 +11,74 @@ $(document).ready(function() {
 	#content { width:100%; padding:0px;  margin-top:-7px; margin-left:0px;}
 	body {background-color:white; }
 	#bodyContent h1, #bodyContent h2, #bodyContent h3, #bodyContent h4, #bodyContent h5 { margin-bottom: 0px; }
+	#content {
+		margin:0;
+	}
 
+	#globalwrapper {
+		font-size: auto;
+	}
 	
+
+	@charset "UTF-8";
+	
+	*,:after,:before,input[type=checkbox],input[type=radio]{
+		-webkit-box-sizing:border-box;-moz-box-sizing:border-box
+	}
+	
+	#content,td,th{
+			padding:0
+	}
+	
+	.btn-group>.btn-group,.btn-toolbar .btn,.btn-toolbar .btn-group,.btn-toolbar .input-group,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.dropdown-menu{
+		float:left
+	}
+
+	.navbar-fixed-bottom .navbar-collapse,.navbar-fixed-top .navbar-collapse,.pre-scrollable{
+		max-height:340px
+	}
+	.fa,.zmdi{
+		text-rendering:auto;-moz-osx-font-smoothing:grayscale
+	}
+	.fa,.glyphicon,.zmdi{
+		-moz-osx-font-smoothing:grayscale
+	}
+	.fa-ul,.zmdi-hc-ul,ul,ul li{
+		list-style-type:none
+	}
+	.owl-carousel,.owl-carousel .owl-item,.waves-effect,a,html{
+		-webkit-tap-highlight-color:transparent
+	}
+	#content{
+		margin:0;background:0 0;border:none;width:100%
+	}
+	#catlinks,#contentSub,#footer-box,#search-controls,.firstHeading{
+		display:none
+	}
+	#top-section{
+		border:none;height:0
+	}
+	#globalWrapper{
+		font-size:100%
+	}
+	h1,h2,h3,h4,h5,h6{
+		border-bottom:0 transparent
+	}
+	table,td,th{
+		margin-bottom:none
+	}
+	a:visited{
+		color:#66cdaa
+	}
+	div{
+		display:block
+	}
+	.mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ul{
+		margin: 0;
+	}
+	li,ul {
+		margin: 0;
+	}
 	
 	
 /**************************************************************** MENU ***************************************************************/
@@ -167,7 +157,7 @@ $(document).ready(function() {
 	}
 	
 	.open::before {
-		content: "-" !important;  
+		//content: "-" !important;  
 	}
 	
 	
@@ -209,6 +199,76 @@ $(document).ready(function() {
 		text-align:center;
 	}
 	
+
+/********************************* NAVBAR STYLING  *********************************/
+	
+	.navbar {
+		background-color: #f2f2f2; 
+		border-bottom: 0;
+		top:12px;
+	}
+
+	.navbar * {
+		font-family: Tahoma !important;
+		font-weight: bold;
+	}
+
+	.navbar-brand{
+		padding: 0;
+	}
+
+	.nav > li:focus, .nav > li:hover {
+		background-color: #cc3333;
+		color: #ffffff;
+	}
+
+	.navbar-default .navbar-nav > .active > a {
+		background-color: inherit;
+		color: #cc3333 !important;
+	}
+
+	.navbar-default .navbar-nav > li > a {
+		color: inherit !important;
+	}
+
+	.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+		background-color: #cc3333 !important;
+		color: #ffffff !important;
+	}
+
+	.dropdown-menu > li {
+		background-color: #f2f2f2;
+		position: relative;
+	}
+	
+	.dropdown-menu > li > a:hover, .dropdown-menu > li >a:focus{
+		color: #cc3333 !important;
+		background-color: inherit !important;
+	}
+
+	.dropdown-menu > li:hover::before, .dropdown-menu > li:focus::before {
+		content: '';
+		position: absolute;
+		width: 16px ;
+		height: 16px;
+		top: 6px;
+		left: -9px;
+		background-image: url("http://2017.igem.org/wiki/images/1/13/KU_Leuven-selector.png");
+		background-size: 16px 16px;
+	}
+
+	.dropdown-menu {
+		padding: 0;
+		border: 0;
+		border-left: 2px solid #cc3333;
+		min-width: 100%;
+	}
+
+	span.caret {
+		margin-left: 4px;
+	}
+
+
 
 /***************************************************** CONTENT OF THE PAGE ****************************************************/
 
@@ -455,223 +515,294 @@ $(document).ready(function() {
 <head> 
 	<!-- This tells the browser that your page is responsive -->
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
 </head>
-
-
-		<div class="igem_2017_menu_wrapper" >
-			<a class="banner" href="http://2017.igem.org/Team:KU_Leuven">
-				<img src="http://2017.igem.org/wiki/images/5/5f/KU_Leuven-Logo_Banner.gif"/>
-			</a>
-			<!-- this div is hidden by default and will only be displayed if the screen size is too small -->
-			<div class="menu_button" id="display_menu_control">
-				MENU
-			</div>
-			<div id="menu_content">
-				
-				<a href="http://2017.igem.org/Team:KU_Leuven">
-					<div class="menu_button direct_to_page">
-						HOME
-					</div>
-				</a>
-				<div class="menu_button">
-					<div class="expand_collapse_icon">  </div> TEAM
-				</div>
-				<div class="submenu_wrapper" id="team_submenu">
-					
-					<a href="http://2017.igem.org/Team:KU_Leuven/Team">
-						<div class="submenu_button" id="Team_page">
-							Team
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Collaborations">
-						<div class="submenu_button"  id="Collaborations_page">
-							Collaborations
-						</div>
-					</a>
-					
-					
-				</div>
-				
-				
-				<div class="menu_button">
-					<div class="expand_collapse_icon">  </div> PROJECT
-				</div>
-				<!-- project submenu -->
-				<div class="submenu_wrapper">
-					
-					<a href="http://2017.igem.org/Team:KU_Leuven/Description">
-						<div class="submenu_button"  id="Description_page">
-							Description
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Design">
-						<div class="submenu_button"  id="Design_page">
-							Design
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Experiments">
-						<div class="submenu_button"  id="Experiments_page">
-							Experiments
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Notebook">
-						<div class="submenu_button"  id="Notebook_page">
-							Notebook
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/InterLab">
-						<div class="submenu_button"  id="InterLab_page">
-							InterLab
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Contribution">
-						<div class="submenu_button"  id="Contribution_page">
-							Contribution
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Model">
-						<div class="submenu_button"  id="Model_page">
-							Model
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Results">
-						<div class="submenu_button"  id="Results_page">
-							Results
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Demonstrate">
-						<div class="submenu_button"  id="Demonstrate_page">
-							Demonstrate
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Improve">
-						<div class="submenu_button"  id="Improve_page">
-							Improve
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Attributions">
-						<div class="submenu_button"  id="Attributions_page">
-							Attributions
-						</div>
-					</a>
-				</div>
-				
-				
-				
-				
-				<div class="menu_button">
-					<div class="expand_collapse_icon">  </div> PARTS
-				</div>
-				
-				<!-- parts submenu -->
-				<div class="submenu_wrapper">
-					
-					<a href="http://2017.igem.org/Team:KU_Leuven/Parts">
-						<div class="submenu_button"  id="Parts_page">
-							Parts
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Basic_Part">
-						<div class="submenu_button"  id="Basic_Part_page">
-							Basic Parts
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Composite_Part">
-						<div class="submenu_button"  id="Composite_Part_page">
-							Composite Parts
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Part_Collection">
-						<div class="submenu_button"  id="Part_Collection_page">
-							Part Collection
-						</div>
-					</a>
-				</div>
-				
-				
-				
-				
-				<a href="http://2017.igem.org/Team:KU_Leuven/Safety">
-					<div class="menu_button direct_to_page">
-						SAFETY
-					</div>
-				</a>
-				<div class="menu_button" >
-					<div class="expand_collapse_icon">  </div> HUMAN PRACTICES
-				</div>
-				<!-- human practices submenu -->
-				<div class="submenu_wrapper">
-					<a href="http://2017.igem.org/Team:KU_Leuven/HP/Silver">
-						<div class="submenu_button"   id="Silver_page">
-							Silver HP
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/HP/Gold_Integrated">
-						<div class="submenu_button" id="Gold_Integrated_page">
-							Integrated and Gold
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Engagement">
-						<div class="submenu_button"  id="Engagement_page">
-							Public Engagement
-						</div>
-					</a>
-				</div>
-				<div class="menu_button">
-					<div class="expand_collapse_icon">  </div> AWARDS
-				</div>
-				<!-- awards submenu -->
-				<div class="submenu_wrapper">
-					<a href="http://2017.igem.org/Team:KU_Leuven/Applied_Design">
-						<div class="submenu_button"  id="Applied_Design_page">
-							Applied Design
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Entrepreneurship">
-						<div class="submenu_button"  id="Entrepreneurship_page">
-							Entrepreneurship
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Hardware">
-						<div class="submenu_button"  id="Hardware_page">
-							Hardware
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Measurement">
-						<div class="submenu_button"  id="Measurement_page">
-							Measurement
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Model">
-						<div class="submenu_button"  id="Model_page">
-							Model
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Plant">
-						<div class="submenu_button"  id="Plant_page">
-							Plant
-						</div>
-					</a>
-					<a href="http://2017.igem.org/Team:KU_Leuven/Software">
-						<div class="submenu_button"  id="Software_page">
-							Software
-						</div>
-					</a>
-				</div>
-				<a href="http://igem.org/2017_Judging_Form?team=KU_Leuven">
-					<div class="menu_button direct_to_page">
-						JUDGING FORM
-					</div>
-				</a>
-				
-				<div class="menu_bottom_padding" >
-				</div>
-				
-			</div>
-		</div>
-		<!-- start of content -->
-		<div class="igem_2017_content_wrapper"></div>
+<body>
 	
+
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">
+						<img height="100%" src="http://2017.igem.org/wiki/images/1/18/KU_Leuven-Logo_Brand.gif">
+					</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="http://2017.igem.org/Team:KU_Leuven">HOME</a></li>
+						<li class="dropdown">
+							<a href="http://2017.igem.org/Team:KU_Leuven/Team" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TEAM<span class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-menu-left">
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Team">Team</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Collaborations">Collaborations</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="http://2017.igem.org/Team:KU_Leuven/Project" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PROJECT<span class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-menu-left">
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Description">Description</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Design">Design</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Experiments">Experiments</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Notebook">Notebook</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/InterLab">InterLab</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Contribution">Contribution</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Model">Model</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Results">Results</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Demonstrate">Demonstrate</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Improve">Improve</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Attributions">Attributions</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PARTS<span class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-menu-left">
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Parts">Parts</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Basic_Part">Basic Parts</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Composite_Part">Composite Parts</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Part_Collection">Part Collection</a></li>
+							</ul>
+						</li>
+						<li><a href="http://2017.igem.org/Team:KU_Leuven/Safety">SAFETY</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HUMAN PRACTICES<span class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-menu-left">
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Silver">Silver HP</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Gold_Integrated">Integrated and Gold</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Public">Public Engagement</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="http://2017.igem.org/Team:KU_Leuven/Awards" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">AWARDS<span class="caret"></span></a>
+							<ul class="dropdown-menu dropdown-menu-left">
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Applied_Design">Applied Design</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Entrepeneurship">Entrepeneurship</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Hardware">Hardware</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Measurement">Measurement</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Model">Model</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Plant">Plant</a></li>
+								<li><a href="http://2017.igem.org/Team:KU_Leuven/Software">Software</a></li>
+							</ul>
+						</li>
+						<li><a href="http://2017.igem.org/Team:KU_Leuven/2017_Judging_Form">JUDGING FORM</a></li>
+					</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+			</nav>
+			<!-- OLD NAV
+			<div class="igem_2017_menu_wrapper" >
+				<a class="banner" href="http://2017.igem.org/Team:KU_Leuven">
+					<img src="http://2017.igem.org/wiki/images/5/5f/KU_Leuven-Logo_Banner.gif"/>
+				</a>
+				<div class="menu_button" id="display_menu_control">
+					MENU
+				</div>
+				<div id="menu_content">
+					
+					<a href="http://2017.igem.org/Team:KU_Leuven">
+						<div class="menu_button direct_to_page">
+							HOME
+						</div>
+					</a>
+					<div class="menu_button">
+						<div class="expand_collapse_icon">  </div> TEAM
+					</div>
+					<div class="submenu_wrapper" id="team_submenu">
+						
+						<a href="http://2017.igem.org/Team:KU_Leuven/Team">
+							<div class="submenu_button" id="Team_page">
+								Team
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Collaborations">
+							<div class="submenu_button"  id="Collaborations_page">
+								Collaborations
+							</div>
+						</a>
+						
+						
+					</div>
+					
+					
+					<div class="menu_button">
+						<div class="expand_collapse_icon">  </div> PROJECT
+					</div>
+					<div class="submenu_wrapper">
+						
+						<a href="http://2017.igem.org/Team:KU_Leuven/Description">
+							<div class="submenu_button"  id="Description_page">
+								Description
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Design">
+							<div class="submenu_button"  id="Design_page">
+								Design
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Experiments">
+							<div class="submenu_button"  id="Experiments_page">
+								Experiments
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Notebook">
+							<div class="submenu_button"  id="Notebook_page">
+								Notebook
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/InterLab">
+							<div class="submenu_button"  id="InterLab_page">
+								InterLab
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Contribution">
+							<div class="submenu_button"  id="Contribution_page">
+								Contribution
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Model">
+							<div class="submenu_button"  id="Model_page">
+								Model
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Results">
+							<div class="submenu_button"  id="Results_page">
+								Results
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Demonstrate">
+							<div class="submenu_button"  id="Demonstrate_page">
+								Demonstrate
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Improve">
+							<div class="submenu_button"  id="Improve_page">
+								Improve
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Attributions">
+							<div class="submenu_button"  id="Attributions_page">
+								Attributions
+							</div>
+						</a>
+					</div>
+					
+					
+					
+					
+					<div class="menu_button">
+						<div class="expand_collapse_icon">  </div> PARTS
+					</div>
+					
+					<div class="submenu_wrapper">
+						
+						<a href="http://2017.igem.org/Team:KU_Leuven/Parts">
+							<div class="submenu_button"  id="Parts_page">
+								Parts
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Basic_Part">
+							<div class="submenu_button"  id="Basic_Part_page">
+								Basic Parts
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Composite_Part">
+							<div class="submenu_button"  id="Composite_Part_page">
+								Composite Parts
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Part_Collection">
+							<div class="submenu_button"  id="Part_Collection_page">
+								Part Collection
+							</div>
+						</a>
+					</div>
+					
+					
+					
+					
+					<a href="http://2017.igem.org/Team:KU_Leuven/Safety">
+						<div class="menu_button direct_to_page">
+							SAFETY
+						</div>
+					</a>
+					<div class="menu_button" >
+						<div class="expand_collapse_icon">  </div> HUMAN PRACTICES
+					</div>
+					<div class="submenu_wrapper">
+						<a href="http://2017.igem.org/Team:KU_Leuven/HP/Silver">
+							<div class="submenu_button"   id="Silver_page">
+								Silver HP
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/HP/Gold_Integrated">
+							<div class="submenu_button" id="Gold_Integrated_page">
+								Integrated and Gold
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Engagement">
+							<div class="submenu_button"  id="Engagement_page">
+								Public Engagement
+							</div>
+						</a>
+					</div>
+					<div class="menu_button">
+						<div class="expand_collapse_icon">  </div> AWARDS
+					</div>
+					<div class="submenu_wrapper">
+						<a href="http://2017.igem.org/Team:KU_Leuven/Applied_Design">
+							<div class="submenu_button"  id="Applied_Design_page">
+								Applied Design
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Entrepreneurship">
+							<div class="submenu_button"  id="Entrepreneurship_page">
+								Entrepreneurship
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Hardware">
+							<div class="submenu_button"  id="Hardware_page">
+								Hardware
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Measurement">
+							<div class="submenu_button"  id="Measurement_page">
+								Measurement
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Model">
+							<div class="submenu_button"  id="Model_page">
+								Model
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Plant">
+							<div class="submenu_button"  id="Plant_page">
+								Plant
+							</div>
+						</a>
+						<a href="http://2017.igem.org/Team:KU_Leuven/Software">
+							<div class="submenu_button"  id="Software_page">
+								Software
+							</div>
+						</a>
+					</div>
+					<a href="http://igem.org/2017_Judging_Form?team=KU_Leuven">
+						<div class="menu_button direct_to_page">
+							JUDGING FORM
+						</div>
+					</a>
+					
+					<div class="menu_bottom_padding" >
+					</div>
+					
+				</div>
+			</div>
+			-->
+			
 
 
 

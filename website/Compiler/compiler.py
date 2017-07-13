@@ -39,13 +39,21 @@ def main():
 		js = f_js.read()
 
 
+	bootstrap_js = ''
+	with open('../assets/bootstrap.min.js', 'r') as f_bsjs:
+		bootstrap_js = f_bsjs.read()
+
+	bootstrap_css = ''
+	with open('../assets/bootstrap.min.css', 'r') as f_bscss:
+		bootstrap_css = f_bscss.read()
+
 	out_file = ''
 
 	markup = ''
 	with open(COMPILER_CONST.TEMPLATE_FILE, 'r') as f_markup:
 		markup = f_markup.read()
 	
-	out_html = markup.format(script=js, style=css, content=html)
+	out_html = markup.format(script=js, style=css, content=html, bootstrap_js=bootstrap_js, bootstrap_css=bootstrap_css)
 
 	if args.c:
 		pyperclip.copy(out_html)
